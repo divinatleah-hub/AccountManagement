@@ -1,16 +1,16 @@
 public class Account {
-    private int accountId;
+    private int accountNo;
     private String name;
     private double balance;
 
-    public Account(int accountId, String name, double balance) {
-        this.accountId = accountId;
+    public Account(int accountNo, String name, double balance) {
+        this.accountNo = accountNo;
         this.name = name;
         this.balance = balance;
     }
 
-    public int getAccountId() {
-        return accountId;
+    public int getAccountNo() {
+        return accountNo;
     }
 
     public String getName() {
@@ -25,11 +25,10 @@ public class Account {
         balance += amount;
     }
 
-    public boolean withdraw(double amount) {
-        if (amount <= balance) {
+    public void withdraw(double amount) {
+        if (amount <= balance) 
             balance -= amount;
-            return true;
-        }
-        return false;
+        else
+            System.out.println{"Insufficient Balance"};
     }
 }

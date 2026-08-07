@@ -1,102 +1,76 @@
+
 import java.util.Scanner;
 
 public class Menu {
 
-    private Scanner sc = new Scanner(System.in);
-    private Bank bank = new Bank();
-
     public void start() {
 
-        int choice;
+        Scanner sc = new Scanner(System.in);
 
-        do {
+        Bank bank = new Bank();
 
-            System.out.println("\n===== BANK MANAGEMENT SYSTEM =====");
-            System.out.println("1. Create Account");
-            System.out.println("2. Deposit");
-            System.out.println("3. Withdraw");
-            System.out.println("4. Check Balance");
-            System.out.println("5. Exit");
+        while (true) {
 
-            System.out.print("Enter Choice: ");
-            choice = sc.nextInt();
+            System.out.println("\n1.Create Account");
+            System.out.println("2.Deposit");
+            System.out.println("3.Withdraw");
+            System.out.println("4.Balance Check");
+            System.out.println("5.Exit");
 
-            switch (choice) {
+            System.out.print("Enter Choice : ");
+
+            int ch = sc.nextInt();
+
+            switch (ch) {
 
                 case 1:
-
-                    System.out.print("Enter Account ID: ");
-                    int id = sc.nextInt();
+                    System.out.print("Account No : ");
+                    int acc = sc.nextInt();
 
                     sc.nextLine();
 
-                    System.out.print("Enter Name: ");
+                    System.out.print("Name : ");
                     String name = sc.nextLine();
 
-                    System.out.print("Enter Initial Balance: ");
-                    double balance = sc.nextDouble();
+                    System.out.print("Opening Balance : ");
+                    double bal = sc.nextDouble();
 
-                    if (bank.createAccount(id, name, balance)) {
-                        System.out.println("Account Created Successfully.");
-                    } else {
-                        System.out.println("Account ID Already Exists.");
-                    }
-
+                    bank.createAccount(acc, name, bal);
                     break;
 
                 case 2:
+                    System.out.print("Account No : ");
+                    acc = sc.nextInt();
 
-                    System.out.print("Enter Account ID: ");
-                    id = sc.nextInt();
+                    System.out.print("Amount : ");
+                    double amt = sc.nextDouble();
 
-                    System.out.print("Enter Deposit Amount: ");
-                    double deposit = sc.nextDouble();
-
-                    if (bank.deposit(id, deposit)) {
-                        System.out.println("Amount Deposited Successfully.");
-                    } else {
-                        System.out.println("Account Not Found.");
-                    }
-
+                    bank.deposit(acc, amt);
                     break;
 
                 case 3:
+                    System.out.print("Account No : ");
+                    acc = sc.nextInt();
 
-                    System.out.print("Enter Account ID: ");
-                    id = sc.nextInt();
+                    System.out.print("Amount : ");
+                    amt = sc.nextDouble();
 
-                    System.out.print("Enter Withdraw Amount: ");
-                    double withdraw = sc.nextDouble();
-
-                    if (bank.withdraw(id, withdraw)) {
-                        System.out.println("Withdrawal Successful.");
-                    } else {
-                        System.out.println("Insufficient Balance or Account Not Found.");
-                    }
-
+                    bank.withdraw(acc, amt);
                     break;
 
                 case 4:
+                    System.out.print("Account No : ");
+                    acc = sc.nextInt();
 
-                    System.out.print("Enter Account ID: ");
-                    id = sc.nextInt();
-
-                    bank.checkBalance(id);
-
+                    bank.balance(acc);
                     break;
 
                 case 5:
-
-                    System.out.println("Thank You!");
-                    break;
+                    System.exit(0);
 
                 default:
-
-                    System.out.println("Invalid Choice.");
-
+                    System.out.println("Invalid Choice");
             }
-
-        } while (choice != 5);
-
+        }
     }
 }
