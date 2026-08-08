@@ -1,76 +1,49 @@
-
 import java.util.Scanner;
 
 public class Menu {
 
-    public void start() {
+    private Bank bank;
+    private Scanner scanner;
 
-        Scanner sc = new Scanner(System.in);
+    public Menu(Bank bank) {
+        this.bank = bank;
+        this.scanner = new Scanner(System.in);
+    }
 
-        Bank bank = new Bank();
+    public void showMenu() {
 
-        while (true) {
+        System.out.println("\n===== ACCOUNT MANAGEMENT =====");
+        System.out.println("1. Create Account");
+        System.out.println("2. Exit");
 
-            System.out.println("\n1.Create Account");
-            System.out.println("2.Deposit");
-            System.out.println("3.Withdraw");
-            System.out.println("4.Balance Check");
-            System.out.println("5.Exit");
+        System.out.print("Enter your choice: ");
+        int choice = scanner.nextInt();
 
-            System.out.print("Enter Choice : ");
+        switch (choice) {
 
-            int ch = sc.nextInt();
+            case 1:
+                createAccount();
+                break;
 
-            switch (ch) {
+            case 2:
+                System.out.println("Thank you!");
+                break;
 
-                case 1:
-                    System.out.print("Account No : ");
-                    int acc = sc.nextInt();
-
-                    sc.nextLine();
-
-                    System.out.print("Name : ");
-                    String name = sc.nextLine();
-
-                    System.out.print("Opening Balance : ");
-                    double bal = sc.nextDouble();
-
-                    bank.createAccount(acc, name, bal);
-                    break;
-
-                case 2:
-                    System.out.print("Account No : ");
-                    acc = sc.nextInt();
-
-                    System.out.print("Amount : ");
-                    double amt = sc.nextDouble();
-
-                    bank.deposit(acc, amt);
-                    break;
-
-                case 3:
-                    System.out.print("Account No : ");
-                    acc = sc.nextInt();
-
-                    System.out.print("Amount : ");
-                    amt = sc.nextDouble();
-
-                    bank.withdraw(acc, amt);
-                    break;
-
-                case 4:
-                    System.out.print("Account No : ");
-                    acc = sc.nextInt();
-
-                    bank.balance(acc);
-                    break;
-
-                case 5:
-                    System.exit(0);
-
-                default:
-                    System.out.println("Invalid Choice");
-            }
+            default:
+                System.out.println("Invalid choice.");
         }
+    }
+
+    private void createAccount() {
+
+        System.out.print("Enter Account Number: ");
+        int accountNumber = scanner.nextInt();
+
+        scanner.nextLine();
+
+        System.out.print("Enter Account Holder Name: ");
+        String name = scanner.nextLine();
+
+        bank.createAccount(accountNumber, name);
     }
 }

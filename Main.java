@@ -2,9 +2,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Menu menu = new Menu();
-        menu.start();
+        Bank bank = new Bank();
 
+        Menu menu = new Menu(bank);
+
+        menu.showMenu();
     }
-    
 }
