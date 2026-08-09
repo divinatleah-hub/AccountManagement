@@ -20,4 +20,28 @@ public class Account {
     public double getBalance() {
         return balance;
     }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println("Deposit successful!");
+            System.out.println("Deposited: " + amount);
+            System.out.println("Current Balance: " + balance);
+        } else {
+            System.out.println("Invalid deposit amount.");
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount <= 0) {
+            System.out.println("Invalid withdrawal amount.");
+        } else if (amount > balance) {
+            System.out.println("Insufficient balance.");
+        } else {
+            balance -= amount;
+            System.out.println("Withdrawal successful!");
+            System.out.println("Withdrawn: " + amount);
+            System.out.println("Current Balance: " + balance);
+        }
+    }
 }

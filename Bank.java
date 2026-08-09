@@ -18,4 +18,28 @@ public class Bank {
         System.out.println("Account Number: " + accountNumber);
         System.out.println("Account Holder: " + name);
     }
+
+    public void deposit(int accountNumber, double amount) {
+
+        Account account = accounts.get(accountNumber);
+
+        if (account == null) {
+            System.out.println("Account not found.");
+            return;
+        }
+
+        account.deposit(amount);
+    }
+
+    public void withdraw(int accountNumber, double amount) {
+
+        Account account = accounts.get(accountNumber);
+
+        if (account == null) {
+            System.out.println("Account not found.");
+            return;
+        }
+
+        account.withdraw(amount);
+    }
 }

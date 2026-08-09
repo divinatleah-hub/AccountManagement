@@ -14,7 +14,9 @@ public class Menu {
 
         System.out.println("\n===== ACCOUNT MANAGEMENT =====");
         System.out.println("1. Create Account");
-        System.out.println("2. Exit");
+        System.out.println("2. Deposit");
+        System.out.println("3. Withdraw");
+        System.out.println("4. Exit");
 
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
@@ -26,6 +28,14 @@ public class Menu {
                 break;
 
             case 2:
+                deposit();
+                break;
+
+            case 3:
+                withdraw();
+                break;
+
+            case 4:
                 System.out.println("Thank you!");
                 break;
 
@@ -45,5 +55,27 @@ public class Menu {
         String name = scanner.nextLine();
 
         bank.createAccount(accountNumber, name);
+    }
+
+    private void deposit() {
+
+        System.out.print("Enter Account Number: ");
+        int accountNumber = scanner.nextInt();
+
+        System.out.print("Enter Deposit Amount: ");
+        double amount = scanner.nextDouble();
+
+        bank.deposit(accountNumber, amount);
+    }
+
+    private void withdraw() {
+
+        System.out.print("Enter Account Number: ");
+        int accountNumber = scanner.nextInt();
+
+        System.out.print("Enter Withdrawal Amount: ");
+        double amount = scanner.nextDouble();
+
+        bank.withdraw(accountNumber, amount);
     }
 }
