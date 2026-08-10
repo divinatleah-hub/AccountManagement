@@ -1,20 +1,21 @@
 public class Account {
-    private int accountNumber;
-    private String name;
+
+    private String accountNumber;
+    private String accountHolderName;
     private double balance;
 
-    public Account(int accountNumber, String name) {
+    public Account(String accountNumber, String accountHolderName) {
         this.accountNumber = accountNumber;
-        this.name = name;
+        this.accountHolderName = accountHolderName;
         this.balance = 0.0;
     }
 
-    public int getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public String getName() {
-        return name;
+    public String getAccountHolderName() {
+        return accountHolderName;
     }
 
     public double getBalance() {
@@ -24,9 +25,7 @@ public class Account {
     public void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
-            System.out.println("Deposit successful!");
-            System.out.println("Deposited: " + amount);
-            System.out.println("Current Balance: " + balance);
+            System.out.println("Amount deposited successfully.");
         } else {
             System.out.println("Invalid deposit amount.");
         }
@@ -39,9 +38,7 @@ public class Account {
             System.out.println("Insufficient balance.");
         } else {
             balance -= amount;
-            System.out.println("Withdrawal successful!");
-            System.out.println("Withdrawn: " + amount);
-            System.out.println("Current Balance: " + balance);
+            System.out.println("Amount withdrawn successfully.");
         }
     }
 }

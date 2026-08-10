@@ -7,75 +7,76 @@ public class Menu {
 
     public Menu(Bank bank) {
         this.bank = bank;
-        this.scanner = new Scanner(System.in);
+        scanner = new Scanner(System.in);
     }
 
     public void showMenu() {
 
-        System.out.println("\n===== ACCOUNT MANAGEMENT =====");
-        System.out.println("1. Create Account");
-        System.out.println("2. Deposit");
-        System.out.println("3. Withdraw");
-        System.out.println("4. Exit");
+        int choice;
 
-        System.out.print("Enter your choice: ");
-        int choice = scanner.nextInt();
+        do {
+            System.out.println();
+            System.out.println("================================");
+            System.out.println("       BANK MANAGEMENT SYSTEM");
+            System.out.println("================================");
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Check Balance");
+            System.out.println("5. Exit");
+            System.out.println("================================");
 
-        switch (choice) {
+            System.out.print("Enter your choice: ");
+            choice = scanner.nextInt();
+            scanner.nextLine();
 
-            case 1:
-                createAccount();
-                break;
+            switch (choice) {
 
-            case 2:
-                deposit();
-                break;
+                case 1:
+                    System.out.print("Enter Account Number: ");
+                    String accountNumber = scanner.nextLine();
 
-            case 3:
-                withdraw();
-                break;
+                    System.out.print("Enter Account Holder Name: ");
+                    String accountHolderName = scanner.nextLine();
 
-            case 4:
-                System.out.println("Thank you!");
-                break;
+                    bank.createAccount(accountNumber, accountHolderName);
+                    break;
 
-            default:
-                System.out.println("Invalid choice.");
-        }
-    }
+                case 2:
+                    System.out.print("Enter Account Number: ");
+                    String depositAccount = scanner.nextLine();
 
-    private void createAccount() {
+                    System.out.print("Enter Deposit Amount: ");
+                    double depositAmount = scanner.nextDouble();
 
-        System.out.print("Enter Account Number: ");
-        int accountNumber = scanner.nextInt();
+                    bank.deposit(depositAccount, depositAmount);
+                    break;
 
-        scanner.nextLine();
+                case 3:
+                    System.out.print("Enter Account Number: ");
+                    String withdrawAccount = scanner.nextLine();
 
-        System.out.print("Enter Account Holder Name: ");
-        String name = scanner.nextLine();
+                    System.out.print("Enter Withdrawal Amount: ");
+                    double withdrawAmount = scanner.nextDouble();
 
-        bank.createAccount(accountNumber, name);
-    }
+                    bank.withdraw(withdrawAccount, withdrawAmount);
+                    break;
 
-    private void deposit() {
+                case 4:
+                    System.out.print("Enter Account Number: ");
+                    String balanceAccount = scanner.nextLine();
 
-        System.out.print("Enter Account Number: ");
-        int accountNumber = scanner.nextInt();
+                    bank.checkBalance(balanceAccount);
+                    break;
 
-        System.out.print("Enter Deposit Amount: ");
-        double amount = scanner.nextDouble();
+                case 5:
+                    System.out.println("Thank you for using Bank Management System.");
+                    break;
 
-        bank.deposit(accountNumber, amount);
-    }
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
 
-    private void withdraw() {
-
-        System.out.print("Enter Account Number: ");
-        int accountNumber = scanner.nextInt();
-
-        System.out.print("Enter Withdrawal Amount: ");
-        double amount = scanner.nextDouble();
-
-        bank.withdraw(accountNumber, amount);
+        } while (choice != 5);
     }
 }

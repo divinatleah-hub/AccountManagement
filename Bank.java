@@ -2,44 +2,53 @@ import java.util.HashMap;
 
 public class Bank {
 
-    private HashMap<Integer, Account> accounts = new HashMap<>();
+    private HashMap<String, Account> accounts;
 
-    public void createAccount(int accountNumber, String name) {
+    public Bank() {
+        accounts = new HashMap<>();
+    }
 
+    public void createAccount(String accountNumber, String accountHolderName) {
         if (accounts.containsKey(accountNumber)) {
             System.out.println("Account already exists.");
             return;
         }
 
-        Account account = new Account(accountNumber, name);
+        Account account = new Account(accountNumber, accountHolderName);
         accounts.put(accountNumber, account);
 
-        System.out.println("Account created successfully!");
-        System.out.println("Account Number: " + accountNumber);
-        System.out.println("Account Holder: " + name);
+        System.out.println("Account created successfully.");
     }
 
-    public void deposit(int accountNumber, double amount) {
-
-        Account account = accounts.get(accountNumber);
-
-        if (account == null) {
+    public void deposit(String accountNumber, double amount) {
+        if (accounts.containsKey(accountNumber)) {
+            Account account = accounts.get(accountNumber);
+            account.deposit(amount);
+        } else {
             System.out.println("Account not found.");
-            return;
         }
-
-        account.deposit(amount);
     }
 
-    public void withdraw(int accountNumber, double amount) {
-
-        Account account = accounts.get(accountNumber);
-
-        if (account == null) {
+    public void withdraw(String accountNumber, double amount) {
+        if (accounts.containsKey(accountNumber)) {
+            Account account = accounts.get(accountNumber);
+            account.withdraw(amount);
+        } else {
             System.out.println("Account not found.");
-            return;
         }
+    }
 
-        account.withdraw(amount);
+    public void checkBalance(String accountNumber) {
+        if (accounts.containsKey(accountNumber)) {
+            Account account = accounts.get(accountNumber);
+
+            System.out.println("--------------------------------");
+            System.out.println("Account Number : " + account.getAccountNumber());
+            System.out.println("Account Holder : " + account.getAccountHolderName());
+            System.out.println("Current Balance: ₹" + account.getBalance());
+            System.out.println("--------------------------------");
+        } else {
+            System.out.println("Account not found.");
+        }
     }
 }
