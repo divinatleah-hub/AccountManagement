@@ -1,11 +1,6 @@
 public class Main {
-
     public static void main(String[] args) {
-
-        Bank bank = new Bank();
-
-        Menu menu = new Menu(bank);
-
-        menu.showMenu();
+        Menu menu = new Menu();
+        menu.display();
     }
 }
