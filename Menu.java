@@ -1,35 +1,88 @@
 import java.util.Scanner;
 
 public class Menu {
+    private Bank bank = new Bank();
+    private Scanner scanner = new Scanner(System.in);
+
     public void display() {
-        Scanner scanner = new Scanner(System.in);
-        Bank bank = new Bank();
+        int choice;
 
-        System.out.println("===== BANK ACCOUNT MANAGEMENT =====");
-        System.out.println("1. Create Account");
-        System.out.println("2. View All Accounts");
-        System.out.println("3. Exit");
-        System.out.print("Enter your choice: ");
+        do {
+            System.out.println("\n===== BANK ACCOUNT MANAGEMENT =====");
+            System.out.println("1. Create Account");
+            System.out.println("2. Deposit");
+            System.out.println("3. Withdraw");
+            System.out.println("4. Balance Check");
+            System.out.println("5. View All Accounts");
+            System.out.println("6. Exit");
+            System.out.print("Enter your choice: ");
 
-        int choice = scanner.nextInt();
+            choice = scanner.nextInt();
 
-        if (choice == 1) {
-            System.out.print("Enter Account Number: ");
-            int number = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    createAccount();
+                    break;
+                case 2:
+                    deposit();
+                    break;
+                case 3:
+                    withdraw();
+                    break;
+                case 4:
+                    checkBalance();
+                    break;
+                case 5:
+                    bank.viewAllAccounts();
+                    break;
+                case 6:
+                    System.out.println("Thank you.");
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        } while (choice != 6);
+    }
 
-            scanner.nextLine();
+    private void createAccount() {
+        System.out.print("Enter Account Number: ");
+        int number = scanner.nextInt();
 
-            System.out.print("Enter Account Holder Name: ");
-            String name = scanner.nextLine();
+        scanner.nextLine();
 
-            System.out.print("Enter Initial Deposit: ");
-            double balance = scanner.nextDouble();
+        System.out.print("Enter Account Holder Name: ");
+        String name = scanner.nextLine();
 
-            bank.createAccount(number, name, balance);
-        } else if (choice == 2) {
-            bank.viewAllAccounts();
-        } else {
-            System.out.println("Thank you.");
-        }
+        System.out.print("Enter Initial Deposit: ");
+        double balance = scanner.nextDouble();
+
+        bank.createAccount(number, name, balance);
+    }
+
+    private void deposit() {
+        System.out.print("Enter Account Number: ");
+        int number = scanner.nextInt();
+
+        System.out.print("Enter Amount: ");
+        double amount = scanner.nextDouble();
+
+        bank.deposit(number, amount);
+    }
+
+    private void withdraw() {
+        System.out.print("Enter Account Number: ");
+        int number = scanner.nextInt();
+
+        System.out.print("Enter Amount: ");
+        double amount = scanner.nextDouble();
+
+        bank.withdraw(number, amount);
+    }
+
+    private void checkBalance() {
+        System.out.print("Enter Account Number: ");
+        int number = scanner.nextInt();
+
+        bank.checkBalance(number);
     }
 }
