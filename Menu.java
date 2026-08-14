@@ -1,8 +1,13 @@
 import java.util.Scanner;
 
 public class Menu {
-    private Bank bank = new Bank();
-    private Scanner scanner = new Scanner(System.in);
+    private Bank bank;
+    private Scanner scanner;
+
+    public Menu() {
+        bank = new Bank();
+        scanner = new Scanner(System.in);
+    }
 
     public void display() {
         int choice;
@@ -23,25 +28,34 @@ public class Menu {
                 case 1:
                     createAccount();
                     break;
+
                 case 2:
                     deposit();
                     break;
+
                 case 3:
                     withdraw();
                     break;
+
                 case 4:
                     checkBalance();
                     break;
+
                 case 5:
                     bank.viewAllAccounts();
                     break;
+
                 case 6:
-                    System.out.println("Thank you.");
+                    System.out.println("Thank you for using Bank Account Management System.");
                     break;
+
                 default:
                     System.out.println("Invalid choice.");
             }
+
         } while (choice != 6);
+
+        scanner.close();
     }
 
     private void createAccount() {
@@ -63,7 +77,7 @@ public class Menu {
         System.out.print("Enter Account Number: ");
         int number = scanner.nextInt();
 
-        System.out.print("Enter Amount: ");
+        System.out.print("Enter Deposit Amount: ");
         double amount = scanner.nextDouble();
 
         bank.deposit(number, amount);
@@ -73,7 +87,7 @@ public class Menu {
         System.out.print("Enter Account Number: ");
         int number = scanner.nextInt();
 
-        System.out.print("Enter Amount: ");
+        System.out.print("Enter Withdrawal Amount: ");
         double amount = scanner.nextDouble();
 
         bank.withdraw(number, amount);

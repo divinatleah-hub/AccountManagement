@@ -26,10 +26,17 @@ public class Account {
     }
 
     public boolean withdraw(double amount) {
-        if (amount <= balance) {
+        if (amount > 0 && amount <= balance) {
             balance -= amount;
             return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Account Number: " + accountNumber +
+               ", Account Holder: " + accountHolder +
+               ", Balance: ₹" + balance;
     }
 }
