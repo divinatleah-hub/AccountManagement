@@ -1,90 +1,75 @@
-import java.util.LinkedHashMap;
+
+import java.util.TreeMap;
 
 public class Bank {
-    private LinkedHashMap<Integer, Account> accounts;
+
+    private TreeMap<Integer, Account> accounts;
 
     public Bank() {
-        accounts = new LinkedHashMap<>();
+        accounts = new TreeMap<>();
     }
 
-    public void createAccount(int accountNumber, String accountHolder, double initialDeposit) {
-        if (accounts.containsKey(accountNumber)) {
-            System.out.println("Account already exists.");
+    // Create Account
+    public void createAccount(int id, String name, double balance) {
+
+        if (accounts.containsKey(id)) {
+            System.out.println("Account already exists!");
             return;
         }
 
-        if (initialDeposit < 0) {
-            System.out.println("Invalid initial deposit.");
-            return;
-        }
+        Account account = new Account(id, name, balance);
+        accounts.put(id, account);
 
-        Account account = new Account(
-            accountNumber,
-            accountHolder,
-            initialDeposit
-        );
-
-        accounts.put(accountNumber, account);
-        System.out.println("Account created successfully.");
+        System.out.println("Account created successfully!");
     }
 
-    public void deposit(int accountNumber, double amount) {
-        Account account = accounts.get(accountNumber);
-
-        if (account == null) {
-            System.out.println("Account not found.");
-            return;
-        }
-
-        if (amount <= 0) {
-            System.out.println("Invalid amount.");
-            return;
-        }
-
-        account.deposit(amount);
-        System.out.println("Amount deposited successfully.");
-        System.out.println("Balance: ₹" + account.getBalance());
+    // Find Account
+    public Account findAccount(int id) {
+        return accounts.get(id);
     }
 
-    public void withdraw(int accountNumber, double amount) {
-        Account account = accounts.get(accountNumber);
+    // Deposit
+    public void deposit(int id, double amount) {
 
-        if (account == null) {
-            System.out.println("Account not found.");
-            return;
-        }
+        Account account = findAccount(id);
 
-        if (account.withdraw(amount)) {
-            System.out.println("Amount withdrawn successfully.");
-            System.out.println("Balance: ₹" + account.getBalance());
+        if (account != null) {
+            account.deposit(amount);
+            System.out.println("Deposit successful!");
         } else {
-            System.out.println("Insufficient balance or invalid amount.");
+            System.out.println("Account not found!");
         }
     }
 
-    public void checkBalance(int accountNumber) {
-        Account account = accounts.get(accountNumber);
+    // Withdraw
+    public void withdraw(int id, double amount) {
 
-        if (account == null) {
-            System.out.println("Account not found.");
-            return;
+        Account account = findAccount(id);
+
+        if (account != null) {
+
+            if (account.withdraw(amount)) {
+                System.out.println("Withdrawal successful!");
+            } else {
+                System.out.println("Insufficient balance!");
+            }
+
+        } else {
+            System.out.println("Account not found!");
         }
-
-        System.out.println("Account Number: " + account.getAccountNumber());
-        System.out.println("Account Holder: " + account.getAccountHolder());
-        System.out.println("Balance: ₹" + account.getBalance());
     }
 
-    public void viewAllAccounts() {
-        if (accounts.isEmpty()) {
-            System.out.println("No accounts available.");
-            return;
-        }
+    // Balance Check
+    public void checkBalance(int id) {
 
-        System.out.println("\n--- All Accounts ---");
+        Account account = findAccount(id);
 
-        for (Account account : accounts.values()) {
-            System.out.println(account);
+        if (account != null) {
+            System.out.println("Account ID: " + account.getAccountId());
+            System.out.println("Name: " + account.getName());
+            System.out.println("Balance: " + account.getBalance());
+        } else {
+            System.out.println("Account not found!");
         }
     }
 }

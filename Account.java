@@ -1,20 +1,21 @@
 public class Account {
-    private int accountNumber;
-    private String accountHolder;
+
+    private int accountId;
+    private String name;
     private double balance;
 
-    public Account(int accountNumber, String accountHolder, double balance) {
-        this.accountNumber = accountNumber;
-        this.accountHolder = accountHolder;
+    public Account(int accountId, String name, double balance) {
+        this.accountId = accountId;
+        this.name = name;
         this.balance = balance;
     }
 
-    public int getAccountNumber() {
-        return accountNumber;
+    public int getAccountId() {
+        return accountId;
     }
 
-    public String getAccountHolder() {
-        return accountHolder;
+    public String getName() {
+        return name;
     }
 
     public double getBalance() {
@@ -22,21 +23,14 @@ public class Account {
     }
 
     public void deposit(double amount) {
-        balance += amount;
+        balance = balance + amount;
     }
 
     public boolean withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
+        if (amount <= balance) {
+            balance = balance - amount;
             return true;
         }
         return false;
-    }
-
-    @Override
-    public String toString() {
-        return "Account Number: " + accountNumber +
-               ", Account Holder: " + accountHolder +
-               ", Balance: ₹" + balance;
     }
 }
