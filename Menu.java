@@ -20,7 +20,8 @@ public class Menu {
             System.out.println("2. Deposit");
             System.out.println("3. Withdraw");
             System.out.println("4. Balance Check");
-            System.out.println("5. Exit");
+            System.out.println("5. View Sorted Ledger");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             choice = scanner.nextInt();
@@ -68,6 +69,10 @@ public class Menu {
                     break;
 
                 case 5:
+                    bank.displaySortedLedger();
+                    break;
+
+                case 6:
                     System.out.println("Thank you!");
                     break;
 
@@ -75,6 +80,6 @@ public class Menu {
                     System.out.println("Invalid choice!");
             }
 
-        } while (choice != 5);
+        } while (choice != 6);
     }
 }

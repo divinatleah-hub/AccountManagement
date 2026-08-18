@@ -74,4 +74,19 @@ public class Bank {
             System.out.println("Account not found!");
         }
     }
+
+    // Sorted Ledger View
+    public void displaySortedLedger() {
+
+        System.out.println("\n===== SORTED LEDGER =====");
+
+        if (accounts.isEmpty()) {
+            System.out.println("No accounts available.");
+            return;
+        }
+
+        for (Account account : accounts.values()) {
+            System.out.println(account);
+        }
+    }
 }

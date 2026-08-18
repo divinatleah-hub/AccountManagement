@@ -33,4 +33,11 @@ public class Account {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Account ID: " + accountId +
+               " | Name: " + name +
+               " | Balance: " + balance;
+    }
 }
