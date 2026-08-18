@@ -1,12 +1,14 @@
-
 import java.util.TreeMap;
+import java.util.Comparator;
 
 public class Bank {
 
     private TreeMap<Integer, Account> accounts;
 
     public Bank() {
-        accounts = new TreeMap<>();
+
+        // Natural sorting by Account ID
+        accounts = new TreeMap<>(Comparator.naturalOrder());
     }
 
     // Create Account
